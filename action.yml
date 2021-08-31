@@ -1,0 +1,13 @@
+# action.yml
+name: 'Generate WP i18n'
+description: 'Generate po and pot from repository'
+inputs:
+  pot-path:  
+    description: 'Current Path of the pot file'
+    required: true
+    default: 'wp-content/crowdappquality/languages/crowdappquality.pot'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.pot-path }}
