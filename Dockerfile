@@ -1,8 +1,10 @@
 FROM wordpress:cli-2
 
 USER root 
-RUN sed -i  -e 's/memory_limit = 128M/memory_limit = 512M/' /usr/local/etc/php/php.ini-production
-USER www-data
+RUN adduser --disabled-password  -u 1000 user
+RUN chown -R user .
+RUN apk add gettext
+USER user
 
 COPY entrypoint.sh /entrypoint.sh
 

@@ -2,12 +2,36 @@
 name: 'Generate WP i18n'
 description: 'Generate po and pot from repository'
 inputs:
-  pot-path:  
-    description: 'Current Path of the pot file'
+  folder-to-translate:  
+    description: 'The folder containing the project to translate (e.g. wp-content/themes/mytheme or wp-content/plugins/my-plugin)'
     required: true
-    default: 'wp-content/crowdappquality/languages/crowdappquality.pot'
+    default: 'wp-content/themes/crowdappquality'
+  language-folder:  
+    description: 'The folder containing the language files, relative to the project (e.g. languages)'
+    required: true
+    default: 'languages'
+  pot-file:  
+    description: 'The name of the main pot file (e.g. mytheme.pot)'
+    required: true
+    default: 'languages'
+  domain:  
+    description: 'The domain to translate (e.g. mytextdomain)'
+    required: true
+    default: 'crowdappquality'
+  po-files:  
+    description: 'The po files, separated by ; (e.g. it_IT.po;es_ES.po)'
+    required: true
+    default: 'it_IT.po'
+  string-to-prepend-to-jsons:  
+    description: 'A string to prepend to every generated json (e.g. mytextdomain-)'
+    default: 'crowdappquality-'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.pot-path }}
+    - ${{ inputs.folder-to-translate }}
+    - ${{ inputs.language-folder }}
+    - ${{ inputs.pot-file }}
+    - ${{ inputs.domain }}
+    - ${{ inputs.po-files }}
+    - ${{ inputs.string-to-prepend-to-jsons }}
