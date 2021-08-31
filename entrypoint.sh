@@ -1,1 +1,1 @@
-echo "test"
+echo "Generating $1"
