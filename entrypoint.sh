@@ -15,7 +15,7 @@ wp i18n make-pot . "$LANGUAGE_FOLDER/$POT_FILE" --domain=$DOMAIN
 readarray -d ";" -t PO_FILES_ARRAY <<<"$PO_FILES" 
 
 echo "Removing all JSONs on $FOLDER_TO_TRANSLATE/$LANGUAGE_FOLDER"
-rm "$LANGUAGE_FOLDER"/*.json
+rm -rf "$LANGUAGE_FOLDER"/*.json
 for PO_FILE in "${PO_FILES_ARRAY[@]}"
 do
    : 
