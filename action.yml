@@ -24,7 +24,7 @@ inputs:
     default: 'it_IT.po'
   string-to-prepend-to-jsons:  
     description: 'A string to prepend to every generated json (e.g. mytextdomain-)'
-    default: 'crowdappquality-'
+    default:
 runs:
   using: 'docker'
   image: 'Dockerfile'
