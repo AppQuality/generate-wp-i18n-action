@@ -7,8 +7,8 @@ PO_FILES="$5"
 STRING_TO_PREPEND_TO_JSONS="$6"
 
 cd "$FOLDER_TO_TRANSLATE"
+ls -la
 echo "Generating $FOLDER_TO_TRANSLATE/$LANGUAGE_FOLDER/$POT_FILE"
-mkdir $LANGUAGE_FOLDER
 wp i18n make-pot . "$LANGUAGE_FOLDER/$POT_FILE" --domain=$DOMAIN
 
 readarray -d ";" -t PO_FILES_ARRAY <<<"$PO_FILES" 
