@@ -32,3 +32,12 @@ do
 		 ls $LANGUAGE_FOLDER/${PO_FILE_NO_EXT/.po/}-*.json |  xargs -I {} echo mv {} foo{} | sed "s#foo$LANGUAGE_FOLDER/#$LANGUAGE_FOLDER/$STRING_TO_PREPEND_TO_JSONS#" | bash
 	 fi
 done
+
+if [[ `git status --porcelain` ]]; then
+	git config --global user.name 'Github'
+	git config --global user.email 'cannarocks@users.noreply.github.com'
+	git commit -am "chore: add json lang generated files for submodule: $FOLDER_TO_TRANSLATE (ci skip)"
+	git push
+else
+	echo 'Nothing to commit'
+fi
