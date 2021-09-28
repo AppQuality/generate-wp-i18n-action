@@ -39,7 +39,7 @@ done
 if [[ `git status --porcelain` ]]; then
 	git config --global user.name 'Github'
 	git config --global user.email 'cannarocks@users.noreply.github.com'
-	git commit -am "chore: add json lang generated files for submodule: $FOLDER_TO_TRANSLATE (ci skip)"
+	git commit -am "chore: add json lang generated files for submodule: $DOMAIN (ci skip)"
 	git push
 else
 	echo 'Nothing to commit'
