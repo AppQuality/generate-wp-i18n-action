@@ -5,8 +5,12 @@ POT_FILE="$3"
 DOMAIN="$4"
 PO_FILES="$5"
 STRING_TO_PREPEND_TO_JSONS="$6"
+BRANCH="$7"
 
 cd "$FOLDER_TO_TRANSLATE"
+echo "Checking out to $BRANCH"
+git checkout $BRANCH
+
 echo "Generating $FOLDER_TO_TRANSLATE/$LANGUAGE_FOLDER/$POT_FILE"
 wp i18n make-pot . "$LANGUAGE_FOLDER/$POT_FILE" --domain=$DOMAIN
 
@@ -32,11 +36,11 @@ do
 	 fi
 done
 
-#if [[ `git status --porcelain` ]]; then
-	#git config --global user.name 'Github'
-	#git config --global user.email 'cannarocks@users.noreply.github.com'
-	#git commit -am "chore: add json lang generated files for submodule: $FOLDER_TO_TRANSLATE (ci skip)"
-	#git push
-#else
-	#echo 'Nothing to commit'
-#fi
+if [[ `git status --porcelain` ]]; then
+	git config --global user.name 'Github'
+	git config --global user.email 'cannarocks@users.noreply.github.com'
+	git commit -am "chore: add json lang generated files for submodule: $FOLDER_TO_TRANSLATE (ci skip)"
+	git push
+else
+	echo 'Nothing to commit'
+fi
