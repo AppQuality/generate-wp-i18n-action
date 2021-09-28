@@ -4,7 +4,8 @@ USER root
 RUN adduser --disabled-password -u 1001 -g user user
 RUN chown -R user:user .
 RUN chmod -R g+rw .
-RUN apk add gettext
+RUN apk --update add gettext \
+  git
 USER user
 
 COPY entrypoint.sh /entrypoint.sh
