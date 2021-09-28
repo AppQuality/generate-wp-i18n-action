@@ -25,6 +25,9 @@ inputs:
   string-to-prepend-to-jsons:  
     description: 'A string to prepend to every generated json (e.g. mytextdomain-)'
     default:
+  branch:  
+    description: 'The branch where changes will be committed.'
+    default: 'master'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -35,3 +38,4 @@ runs:
     - ${{ inputs.domain }}
     - ${{ inputs.po-files }}
     - ${{ inputs.string-to-prepend-to-jsons }}
+    - ${{ inputs.branch }}
